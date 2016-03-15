@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity" android:windowSoftInputMode="adjustNothing" android:theme="@style/AppTheme.NoTittleBar"/>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".RegisterActivity" android:windowSoftInputMode="adjustNothing" android:theme="@style/AppTheme.NoTittleBar"/>
         <activity
             android:name=".QuizActivity"
             android:clearTaskOnLaunch="true"

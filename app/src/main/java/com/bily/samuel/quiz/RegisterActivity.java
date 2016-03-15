@@ -1,11 +1,17 @@
 package com.bily.samuel.quiz;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -25,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String name;
     private String email;
     private String pass;
-    private int gender = 2;
+    private FragmentManager fm;
     private ActionProcessButton buttonRegister;
 
     @Override
@@ -38,20 +44,31 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
-                EditText editName = (EditText)findViewById(R.id.regName);
-                EditText editEmail = (EditText)findViewById(R.id.regEmail);
-                EditText editPass = (EditText)findViewById(R.id.regPass);
-                name = editName.getText().toString();
-                email = editEmail.getText().toString();
-                pass = editPass.getText().toString();
-                if(!name.matches("") && !email.matches("") && !pass.matches("")){
-                    Registration registration = new Registration();
-                    registration.execute();
-                    buttonRegister.setProgress(50);
+                final CheckBox checkBox = (CheckBox)findViewById(R.id.checkBox);
+                if(checkBox.isChecked()) {
+                    EditText editName = (EditText) findViewById(R.id.regName);
+                    EditText editEmail = (EditText) findViewById(R.id.regEmail);
+                    EditText editPass = (EditText) findViewById(R.id.regPass);
+                    name = editName.getText().toString();
+                    email = editEmail.getText().toString();
+                    pass = editPass.getText().toString();
+                    if (!name.matches("") && !email.matches("") && !pass.matches("")) {
+                        Registration registration = new Registration();
+                        registration.execute();
+                        buttonRegister.setProgress(50);
+                    } else {
+                        RelativeLayout layout = (RelativeLayout) findViewById(R.id.registerRelative);
+                        Snackbar.make(layout, "Please enter your details.", Snackbar.LENGTH_SHORT).show();
+                    }
                 }else{
-                    RelativeLayout layout = (RelativeLayout)findViewById(R.id.registerRelative);
-                    Snackbar.make(layout, "Please enter your details.", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content), "You need to accept privacy policy.", Snackbar.LENGTH_LONG)
+                            .setAction("ACCEPT", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    checkBox.setChecked(true);
+                                }
+                            })
+                            .setActionTextColor(getResources().getColor(R.color.colorLigth)).show();
                 }
             }
         });
@@ -64,17 +81,19 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
-    public void onRadioButtonClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-        switch(view.getId()) {
-            case R.id.radioMan:
-                if (checked)
-                    gender = 0;
-                    break;
-            case R.id.radioWoman:
-                if (checked)
-                    gender = 1;
-                    break;
+    public void onPolicyButton(View view){
+        fm = getSupportFragmentManager();
+        dialogFragment dFragment = new dialogFragment();
+        dFragment.show(fm, "Policy");
+    }
+
+    @SuppressLint("ValidFragment")
+    public class dialogFragment extends DialogFragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            final View rootView = inflater.inflate(R.layout.fragment_policy, container, false);
+            getDialog().setTitle("Privacy policy");
+            return rootView;
         }
     }
 

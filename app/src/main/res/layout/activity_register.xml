@@ -9,17 +9,18 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:id="@+id/registerRelative"
-    tools:context="com.bily.samuel.quiz.RegisterActivity">
+    tools:context="com.bily.samuel.quiz.RegisterActivity"
+    android:background="@drawable/background">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:id="@+id/linearLayout2"
-        android:layout_marginTop="6dp">
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +28,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Registrácia do kvízu"
             android:id="@+id/textView4"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorLigth"
+            android:textSize="30dp"
+            android:layout_marginBottom="30dp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -36,7 +40,9 @@
             android:ems="10"
             android:id="@+id/regName"
             android:layout_gravity="center_horizontal"
-            android:hint="Janko Mrkvička" />
+            android:hint="Janko Mrkvička"
+            android:textColor="@color/colorLigth"
+            android:textColorHint="@color/color100" />
 
         <EditText
             android:layout_width="match_parent"
@@ -45,7 +51,9 @@
             android:ems="10"
             android:id="@+id/regEmail"
             android:layout_gravity="center_horizontal"
-            android:hint="example@example.com" />
+            android:hint="example@example.com"
+            android:textColor="@color/colorLigth"
+            android:textColorHint="@color/color100" />
 
         <EditText
             android:layout_width="match_parent"
@@ -54,31 +62,34 @@
             android:ems="10"
             android:id="@+id/regPass"
             android:layout_gravity="center_horizontal"
-            android:hint="********" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:hint="********"
+            android:textColor="@color/colorLigth"
+            android:textColorHint="@color/color100" />
+        <LinearLayout
             android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
-            android:visibility="gone">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <RadioButton
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Muž"
-                android:id="@+id/radioMan"
-                android:checked="false"
-                android:onClick="onRadioButtonClicked" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Registráciou súhlasím s podmienkami"
+                android:id="@+id/podmienky"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:onClick="onPolicyButton"
+                android:textColor="@color/color100" />
 
-            <RadioButton
+            <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Žena"
-                android:id="@+id/radioWoman"
+                android:id="@+id/checkBox"
                 android:checked="false"
-                android:onClick="onRadioButtonClicked" />
-        </RadioGroup>
+                android:layout_marginRight="10dp" />
+
+        </LinearLayout>
 
         <com.dd.processbutton.iml.ActionProcessButton
             android:id="@+id/btnSignIn"
@@ -87,9 +98,9 @@
             android:layout_marginBottom="16dp"
             android:text="Registrácia"
             android:textColor="@android:color/white"
-            custom:pb_colorNormal="@color/colorPrimary"
-            custom:pb_colorPressed="@color/colorPrimaryDark"
-            custom:pb_colorProgress="@color/colorPrimaryDark"
+            custom:pb_colorNormal="@color/colorButton"
+            custom:pb_colorPressed="@color/colorButton"
+            custom:pb_colorProgress="@color/colorPrimary"
             custom:pb_textProgress="Loading..." />
 
     </LinearLayout>
@@ -102,18 +113,11 @@
         android:id="@+id/textView5"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:clickable="true"
         android:onClick="onLoginButtonClicked"
-        android:textStyle="italic" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:src="@drawable/images_duckduckgo_com"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/linearLayout2" />
+        android:textStyle="italic"
+        android:textColor="@color/colorLigth" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -122,6 +126,7 @@
         android:text="@string/copyright"
         android:id="@+id/textView3"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorLigth" />
 
 </RelativeLayout>

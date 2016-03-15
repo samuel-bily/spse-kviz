@@ -33,7 +33,7 @@
             android:layout_centerHorizontal="true"
             android:textColor="@color/colorLigth"
             android:layout_marginBottom="30dp"
-            android:textSize="35dp" />
+            android:textSize="30dp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             android:textColor="@android:color/white"
             custom:pb_colorNormal="@color/colorButton"
             custom:pb_colorPressed="@color/colorButton"
-            custom:pb_colorProgress="@color/colorButton"
+            custom:pb_colorProgress="@color/colorPrimary"
             custom:pb_textProgress="Loading..." />
     </LinearLayout>
 
