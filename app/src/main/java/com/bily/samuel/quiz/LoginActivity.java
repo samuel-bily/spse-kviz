@@ -31,6 +31,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        try {
+            getSupportActionBar().hide();
+        }catch(NullPointerException e){
+
+        }
 
         buttonRegister = (ActionProcessButton)findViewById(R.id.btnLogIn);
         buttonRegister.setMode(ActionProcessButton.Mode.ENDLESS);
