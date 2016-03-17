@@ -97,11 +97,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         startActivity(i);
     }
 
-    public void onProfileButtonClicked(View view){
-        Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
-        startActivity(i);
-    }
-
     public void onAboutButtonClicked(){
         Intent i = new Intent(getApplicationContext(), AboutActivity.class);
         startActivity(i);
@@ -184,6 +179,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                         test.setIdT(testJ.getInt("id"));
                         test.setName(testJ.getString("name"));
                         test.setAnswered(testJ.getInt("answered"));
+                        if(testJ.getInt("answered")>0){
+                            test.setQuestions("" + testJ.getDouble("stat")+ "%");
+                        }
                         db.storeTest(test);
                     }
 

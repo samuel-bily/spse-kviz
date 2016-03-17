@@ -11,7 +11,7 @@
         android:visibility="gone" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1">
@@ -24,28 +24,41 @@
             android:id="@+id/testTextView"
             android:textColor="@color/material_grey_900"
             android:layout_gravity="center_vertical"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:layout_weight="1" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:id="@+id/imageLayout"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/testImage"
+                android:src="@drawable/send12"
+                android:adjustViewBounds="false"
+                android:layout_gravity="center_vertical|right"
+                android:layout_weight="0"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="loading..."
+            android:id="@+id/testStat"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/material_grey_600" />
 
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginRight="10dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/testImage"
-            android:src="@drawable/send12"
-            android:adjustViewBounds="false"
-            android:layout_gravity="center_vertical|right"
-            android:layout_weight="0"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-    </RelativeLayout>
 
 </LinearLayout>
