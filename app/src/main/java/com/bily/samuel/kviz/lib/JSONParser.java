@@ -1,4 +1,4 @@
-package com.bily.samuel.quiz.lib;
+package com.bily.samuel.kviz.lib;
 
 import android.util.Log;
 

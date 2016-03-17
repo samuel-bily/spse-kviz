@@ -1,4 +1,4 @@
-package com.bily.samuel.quiz;
+package com.bily.samuel.kviz;
 
 import android.content.Intent;
 import android.database.CursorIndexOutOfBoundsException;
@@ -12,10 +12,10 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bily.samuel.quiz.lib.JSONParser;
-import com.bily.samuel.quiz.lib.database.Answer;
-import com.bily.samuel.quiz.lib.database.DatabaseHelper;
-import com.bily.samuel.quiz.lib.database.Option;
+import com.bily.samuel.kviz.lib.JSONParser;
+import com.bily.samuel.kviz.lib.database.Answer;
+import com.bily.samuel.kviz.lib.database.DatabaseHelper;
+import com.bily.samuel.kviz.lib.database.Option;
 import com.dd.processbutton.iml.ActionProcessButton;
 
 import org.json.JSONArray;

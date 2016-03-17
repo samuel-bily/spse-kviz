@@ -1,4 +1,4 @@
-package com.bily.samuel.quiz.lib.gcm;
+package com.bily.samuel.kviz.lib.gcm;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -11,8 +11,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.bily.samuel.quiz.MainActivity;
-import com.bily.samuel.quiz.R;
+import com.bily.samuel.kviz.MainActivity;
+import com.bily.samuel.kviz.R;
 
 /**
  * Created by samuel on 22.11.2015.

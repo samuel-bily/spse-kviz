@@ -1,4 +1,4 @@
-package com.bily.samuel.quiz;
+package com.bily.samuel.kviz;
 
 import android.content.Intent;
 import android.database.CursorIndexOutOfBoundsException;
@@ -17,11 +17,11 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bily.samuel.quiz.lib.JSONParser;
-import com.bily.samuel.quiz.lib.adapter.TestArrayAdapter;
-import com.bily.samuel.quiz.lib.database.DatabaseHelper;
-import com.bily.samuel.quiz.lib.database.Test;
-import com.bily.samuel.quiz.lib.database.User;
+import com.bily.samuel.kviz.lib.JSONParser;
+import com.bily.samuel.kviz.lib.adapter.TestArrayAdapter;
+import com.bily.samuel.kviz.lib.database.DatabaseHelper;
+import com.bily.samuel.kviz.lib.database.Test;
+import com.bily.samuel.kviz.lib.database.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;

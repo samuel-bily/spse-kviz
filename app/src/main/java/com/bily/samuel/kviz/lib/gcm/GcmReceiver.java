@@ -1,4 +1,4 @@
-package com.bily.samuel.quiz.lib.gcm;
+package com.bily.samuel.kviz.lib.gcm;
 
 import android.app.Activity;
 import android.content.ComponentName;

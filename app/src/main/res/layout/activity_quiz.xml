@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="16dp"
-    tools:context="com.bily.samuel.quiz.QuizActivity">
+    tools:context="com.bily.samuel.kviz.QuizActivity">
 
     <com.dd.processbutton.iml.ActionProcessButton
         android:id="@+id/btnAnswer"

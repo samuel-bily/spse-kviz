@@ -1,4 +1,4 @@
-package com.bily.samuel.quiz.lib.database;
+package com.bily.samuel.kviz.lib.database;
 
 /**
  * Created by samuel on 19.1.2016.

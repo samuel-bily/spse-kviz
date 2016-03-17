@@ -1,4 +1,4 @@
-package com.bily.samuel.quiz;
+package com.bily.samuel.kviz;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
-import com.bily.samuel.quiz.lib.JSONParser;
-import com.bily.samuel.quiz.lib.database.DatabaseHelper;
-import com.bily.samuel.quiz.lib.database.User;
+import com.bily.samuel.kviz.lib.JSONParser;
+import com.bily.samuel.kviz.lib.database.DatabaseHelper;
+import com.bily.samuel.kviz.lib.database.User;
 import com.dd.processbutton.iml.ActionProcessButton;
 
 import org.json.JSONException;

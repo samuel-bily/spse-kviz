@@ -1,4 +1,4 @@
-package com.bily.samuel.quiz.lib.adapter;
+package com.bily.samuel.kviz.lib.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bily.samuel.quiz.R;
-import com.bily.samuel.quiz.lib.database.Question;
+import com.bily.samuel.kviz.R;
+import com.bily.samuel.kviz.lib.database.Question;
 
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.bily.samuel.quiz;
+package com.bily.samuel.kviz;
 
 import android.content.Intent;
 import android.net.Uri;

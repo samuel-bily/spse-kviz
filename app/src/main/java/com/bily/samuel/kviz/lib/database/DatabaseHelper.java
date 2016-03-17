@@ -1,4 +1,4 @@
-package com.bily.samuel.quiz.lib.database;
+package com.bily.samuel.kviz.lib.database;
 
 import android.content.ContentValues;
 import android.content.Context;

@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:id="@+id/main_relative"
-    tools:context="com.bily.samuel.quiz.MainActivity">
+    tools:context="com.bily.samuel.kviz.MainActivity">
 
     <LinearLayout
         android:orientation="vertical"
