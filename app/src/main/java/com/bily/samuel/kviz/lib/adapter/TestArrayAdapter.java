@@ -12,8 +12,6 @@ import android.widget.TextView;
 import com.bily.samuel.kviz.R;
 import com.bily.samuel.kviz.lib.database.Test;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,16 +56,9 @@ public class TestArrayAdapter extends ArrayAdapter {
         name.setText(test.getName());
         id.setText("" + test.getIdT());
 
-        if(test.isAnswered() == 1){
-            imageView.setVisibility(View.GONE);
-            stat.setVisibility(View.VISIBLE);
-            stat.setText(test.getQuestions());
-
-        }else{
-            stat.setVisibility(View.GONE);
-            imageLayout.setVisibility(View.VISIBLE);
-            imageView.setImageResource(R.drawable.inspiration);
-        }
+        imageView.setVisibility(View.GONE);
+        stat.setVisibility(View.VISIBLE);
+        stat.setText(test.getQuestions());
 
         return row;
     }
