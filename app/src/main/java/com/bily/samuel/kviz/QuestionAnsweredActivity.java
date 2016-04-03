@@ -28,7 +28,6 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
 
     private int questionId;
     private int testId;
-    private int rightType;
     private int right;
 
     private TextView option0;
@@ -58,8 +57,8 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
         option3 = (TextView)findViewById(R.id.option3);
 
         setText();
-        new GetOptions().execute();
         setStyle();
+        new GetOptions().execute();
 
     }
 
@@ -70,6 +69,7 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
             Option option = db.getOption(questionId, idO);
             int type = option.getType();
             if(right<1) {
+                int rightType = db.getQuestionType(questionId);
                 switch (type) {
                     case 0:
                         option0.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -169,7 +169,7 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
                         option.setName(JOption.getString("name"));
                         db.storeOption(option);
                     }
-                    rightType = jsonObject.getInt("type");
+                    db.updateQuestionType(questionId, jsonObject.getInt("rightType"));
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
@@ -187,6 +187,7 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     setText();
+                    setStyle();
                 }
             });
 

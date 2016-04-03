@@ -7,6 +7,7 @@ public class Question {
 
     private int id;
     private int idT;
+    private int type;
     private String name;
     private int right;
 
@@ -42,6 +43,14 @@ public class Question {
 
     public void setRight(int right) {
         this.right = right;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String toString(){

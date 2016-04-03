@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IDU + " INTEGER," + KEY_NAME + " TEXT, " + KEY_EMAIL + " TEXT," + KEY_GENDER + " INTEGER" + " )";
     private static final String CREATE_TABLE_TEST = "CREATE TABLE " + TABLE_TESTS + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IDT + " INTEGER," + KEY_ANSWERED + " INTEGER," + KEY_DESC + " TEXT," + KEY_NAME + " TEXT" + " )";
-    private static final String CREATE_TABLE_QUESTION = "CREATE TABLE " + TABLE_QUESTIONS + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IDT + " INTEGER," + KEY_IDQ + " INTEGER," + KEY_RIGHT + " INTEGER," + KEY_NAME + " TEXT" + " )";
+    private static final String CREATE_TABLE_QUESTION = "CREATE TABLE " + TABLE_QUESTIONS + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TYPE + " INTEGER," + KEY_IDT + " INTEGER," + KEY_IDQ + " INTEGER," + KEY_RIGHT + " INTEGER," + KEY_NAME + " TEXT" + " )";
     private static final String CREATE_TABLE_OPTIONS = "CREATE TABLE " + TABLE_OPTIONS + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IDQ + " INTEGER," + KEY_IDO + " INTEGER," + KEY_TYPE + " INTEGER," + KEY_NAME + " TEXT" + " )";
     private static final String CREATE_TABLE_ANSWERS = "CREATE TABLE " + TABLE_ANSWERS + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IDU + " INTEGER," + KEY_IDO + " INTEGER," + KEY_IDT + " INTEGER," + KEY_IDQ + " INTEGER," + KEY_TIMESTRAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP" + " )";
 
@@ -133,8 +133,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_NAME, question.getName());
         values.put(KEY_IDT, question.getIdT());
         values.put(KEY_RIGHT, question.getRight());
+        values.put(KEY_TYPE, question.getType());
         db.insert(TABLE_QUESTIONS, null, values);
 
+    }
+
+    public void updateQuestionType(int idq, int type){
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.rawQuery("UPDATE " + TABLE_QUESTIONS + " SET " + KEY_TYPE + "=" + type + " WHERE " + KEY_IDQ + "=" + idq, null);
+    }
+
+    public int getQuestionType(int idq){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_QUESTIONS + " WHERE " + KEY_IDQ + " = " + idq, null);
+        c.moveToFirst();
+        int type = c.getInt(c.getColumnIndex(KEY_TYPE));
+        c.close();
+        return type;
     }
 
     public ArrayList<Question> getQuestions(int idt) {
@@ -148,6 +163,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             question.setName(c.getString(c.getColumnIndex(KEY_NAME)));
             question.setIdT(c.getInt(c.getColumnIndex(KEY_IDT)));
             question.setRight(c.getInt(c.getColumnIndex(KEY_RIGHT)));
+            question.setType(c.getInt(c.getColumnIndex(KEY_TYPE)));
             questions.add(question);
         }
         c.close();

@@ -205,6 +205,7 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
                         question.setIdT(testId);
                         question.setId(jsonObjectQ.getInt("id"));
                         question.setName(jsonObjectQ.getString("text"));
+                        question.setType(jsonObjectQ.getInt("type"));
                         if(answered == 1) {
                             try {
                                 Answer answer = db.getAnswer(question.getId());
