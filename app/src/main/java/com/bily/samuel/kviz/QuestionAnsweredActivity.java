@@ -28,6 +28,7 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
 
     private int questionId;
     private int testId;
+    private int rightType;
     private int right;
 
     private TextView option0;
@@ -83,6 +84,20 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
                         option3.setTextColor(getResources().getColor(R.color.colorPrimary));
                         break;
                 }
+                switch (rightType) {
+                    case 0:
+                        option0.setTextColor(getResources().getColor(R.color.colorRight));
+                        break;
+                    case 1:
+                        option1.setTextColor(getResources().getColor(R.color.colorRight));
+                        break;
+                    case 2:
+                        option2.setTextColor(getResources().getColor(R.color.colorRight));
+                        break;
+                    case 3:
+                        option3.setTextColor(getResources().getColor(R.color.colorRight));
+                        break;
+                }
             }else{
                 switch (type) {
                     case 0:
@@ -99,6 +114,7 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
                         break;
                 }
             }
+
         }catch(NullPointerException e) {
             Log.e("NullPointerException", e.toString());
         }
@@ -153,6 +169,7 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
                         option.setName(JOption.getString("name"));
                         db.storeOption(option);
                     }
+                    rightType = jsonObject.getInt("type");
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
