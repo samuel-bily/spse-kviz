@@ -10,14 +10,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bily.samuel.kviz.LoginActivity" android:windowSoftInputMode="adjustNothing" android:theme="@style/AppTheme.NoTittleBar"/>
-        <activity android:name="com.bily.samuel.kviz.RegisterActivity" android:windowSoftInputMode="adjustNothing" android:theme="@style/AppTheme.NoTittleBar"/>
         <activity
-            android:name="com.bily.samuel.kviz.QuizActivity"
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoTittleBar"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/AppTheme.NoTittleBar"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".QuizActivity"
             android:clearTaskOnLaunch="true"
-            android:parentActivityName="com.bily.samuel.kviz.MainActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
-            android:name="com.bily.samuel.kviz.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,18 +31,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.bily.samuel.kviz.QuestionActivity" />
-        <activity android:name="com.bily.samuel.kviz.QuestionAnsweredActivity" />
+        <activity android:name=".QuestionActivity" />
+        <activity android:name=".QuestionAnsweredActivity" />
         <activity
-            android:name="com.bily.samuel.kviz.SettingsActivity"
+            android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName="com.bily.samuel.kviz.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.bily.samuel.kviz.MainActivity" />
         </activity>
-        <activity android:name="com.bily.samuel.kviz.AboutActivity"
-            android:parentActivityName="com.bily.samuel.kviz.MainActivity" ></activity>
+        <activity
+            android:name=".AboutActivity"
+            android:parentActivityName=".ProfileActivity" />
+        <activity android:name=".ProfileActivity"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

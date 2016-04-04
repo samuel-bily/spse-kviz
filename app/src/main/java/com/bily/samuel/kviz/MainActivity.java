@@ -89,39 +89,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         id = user.getId_u();
     }
 
-    public void onLogoutButtonClicked(){
-        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-        db.dropTable();
-        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-        finish();
+    public void onProfileButtonClicked(View view){
+        Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
         startActivity(i);
-    }
-
-    public void onAboutButtonClicked(){
-        Intent i = new Intent(getApplicationContext(), AboutActivity.class);
-        startActivity(i);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.singOut:
-                onLogoutButtonClicked();
-                return true;
-            case R.id.about:
-                onAboutButtonClicked();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     public void loadDataToListView(){

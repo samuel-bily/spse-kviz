@@ -5,10 +5,6 @@
     android:layout_height="match_parent"
     android:id="@+id/quizLayout"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="16dp"
     tools:context="com.bily.samuel.kviz.QuizActivity">
 
     <com.dd.processbutton.iml.ActionProcessButton
