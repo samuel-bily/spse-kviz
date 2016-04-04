@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    style="@style/AppTheme">
 
     <EditText
         android:layout_width="match_parent"
@@ -12,12 +14,17 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <com.dd.processbutton.iml.ActionProcessButton
+        android:id="@+id/btnLogIn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Uložiť"
-        android:id="@+id/saveName"
-        android:layout_gravity="right"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp" />
+        android:textColor="@android:color/white"
+        custom:pb_colorNormal="@color/colorButton"
+        custom:pb_colorPressed="@color/colorButton"
+        custom:pb_colorProgress="@color/colorPrimary"
+        custom:pb_textProgress="Loading..."
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 </LinearLayout>

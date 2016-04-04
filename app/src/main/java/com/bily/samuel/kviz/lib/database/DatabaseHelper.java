@@ -97,6 +97,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public void changeName(String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_NAME,name);
+        db.update(TABLE_USER,cv,"1",new String[]{});
+    }
+
     public void storeTest(Test test) {
         //Log.e("STORING", test.toString());
         SQLiteDatabase db = this.getWritableDatabase();
