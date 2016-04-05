@@ -1,7 +1,9 @@
 package com.bily.samuel.kviz;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
@@ -69,6 +71,26 @@ public class ProfileActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), LoginActivity.class);
         finish();
         startActivity(i);
+    }
+
+    public void onContactButtonClicked(View view){
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"samobily1@gmail.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Aplikácia EduKvíz");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+    public void onRateUsButtonClicked(View view){
+        Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            getApplicationContext().startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+        }
     }
 
     @SuppressLint("ValidFragment")

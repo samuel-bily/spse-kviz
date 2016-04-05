@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="SPSE Quiz uses the following open sourse components in accordance with their open source licence requirements"
+        android:text="EduKviz uses the following open sourse components in accordance with their open source licence requirements"
         android:id="@+id/textView8"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

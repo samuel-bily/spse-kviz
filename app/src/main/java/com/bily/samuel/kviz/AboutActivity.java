@@ -19,7 +19,7 @@ public class AboutActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "samobily1@gmail.com" });
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Application SPSE Quiz");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Aplikácia EduKvíz");
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }

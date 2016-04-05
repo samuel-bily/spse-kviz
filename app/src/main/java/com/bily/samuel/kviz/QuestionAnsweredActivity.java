@@ -174,7 +174,7 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            RelativeLayout layout = (RelativeLayout) findViewById(R.id.questionLayout);
+                            RelativeLayout layout = (RelativeLayout) findViewById(R.id.questionLayoutA);
                             Snackbar.make(layout, "Ste offline.", Snackbar.LENGTH_LONG).show();
                         }
                     });
