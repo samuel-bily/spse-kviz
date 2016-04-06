@@ -164,6 +164,7 @@ public class QuestionActivity extends AppCompatActivity {
             values.put("question",""+questionId);
             try {
                 JSONObject jsonObject = jsonParser.makePostCall(values);
+                Log.e("Gettin",jsonObject.toString());
                 if(jsonObject.getInt("success")==1){
                     JSONArray options = jsonObject.getJSONArray("options");
                     for(int i = 0; i < options.length();i++) {

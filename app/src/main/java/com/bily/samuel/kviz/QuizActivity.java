@@ -59,6 +59,7 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
         getQuestions = new GetQuestions();
         getQuestions.execute();
         if(answered<1) {
+            loadDataToListView();
             sendButton.setMode(ActionProcessButton.Mode.ENDLESS);
             sendButton.setColorScheme(getResources().getColor(R.color.colorLigth), getResources().getColor(R.color.colorAccent), getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorDark));
             sendButton.setOnClickListener(new View.OnClickListener() {
