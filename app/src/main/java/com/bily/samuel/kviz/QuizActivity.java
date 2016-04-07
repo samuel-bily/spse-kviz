@@ -79,14 +79,17 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
         swipeRefreshLayout.setColorSchemeColors(R.color.colorLigth, R.color.colorDark);
         swipeRefreshLayout.setRefreshing(true);
         new GetQuestions().execute();
-        new GetAllOptions().execute();
+
+        if(!isDownloaded()) {
+            new GetAllOptions().execute();
+        }
 
         new AsyncTask<Void, Void, Void>(){
 
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    Thread.sleep(450);
+                    Thread.sleep(350);
                 } catch (InterruptedException e) {
                     Log.e("InterruptedException",e.toString());
                 }
@@ -100,6 +103,13 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
                 new GetQuestions().execute();
             }
         }.execute();
+    }
+
+    public boolean isDownloaded(){
+        ArrayList<Question> questions = db.getQuestions(testId);
+        Question q = questions.get(0);
+        int idq = q.getId();
+        return db.getOptions(idq).size() > 0;
     }
 
     @Override
