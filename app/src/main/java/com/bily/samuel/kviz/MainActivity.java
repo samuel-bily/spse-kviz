@@ -2,6 +2,7 @@ package com.bily.samuel.kviz;
 
 import android.content.Intent;
 import android.database.CursorIndexOutOfBoundsException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         db = new DatabaseHelper(getApplicationContext());
@@ -56,9 +58,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             startActivity(i);
             finish();
         }else{
+            try{
+                loadDataToListView();
+            }catch(IllegalStateException e){
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                finish();
+                startActivity(i);
+            }
             nameText = (TextView) findViewById(R.id.nameText);
             emailText = (TextView) findViewById(R.id.emailText);
-
             nameText.setText(user.getName());
             emailText.setText(user.getEmail());
             id = user.getId_u();
@@ -69,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             swipeRefreshLayout.setRefreshing(true);
 
             testArray = new TestArrayAdapter(getApplicationContext(),R.layout.list_test);
-            loadDataToListView();
             getTests = new GetTests();
             getTests.execute();
         }
@@ -140,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             values.put("id_u","" + user.getId_u());
             try {
                 JSONObject jsonObject = jsonParser.makePostCall(values);
+                Log.e("gettin", jsonObject.toString());
                 if(jsonObject.getInt("success")==1){
                     JSONArray tests = jsonObject.getJSONArray("tests");
                     db.dropTests();
@@ -149,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                         test.setIdT(testJ.getInt("id"));
                         test.setName(testJ.getString("name"));
                         test.setAnswered(testJ.getInt("answered"));
+                        test.setInstructor(testJ.getString("instructor"));
                         if(testJ.getInt("answered")>0){
                             test.setQuestions("" + testJ.getDouble("stat")+ "%");
                         }

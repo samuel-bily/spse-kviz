@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_IDO = "id_o";
     private static final String KEY_TIMESTRAMP = "timestramp";
     private static final String KEY_ANSWERED = "answered";
+    private static final String KEY_INSTRUCTOR = "instructor";
     private static final String KEY_RIGHT = "right";
     private static final String KEY_DESC = "desc";
     private static final String KEY_TYPE = "type";
@@ -41,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_GENDER = "gender";
 
     private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IDU + " INTEGER," + KEY_NAME + " TEXT, " + KEY_EMAIL + " TEXT," + KEY_GENDER + " INTEGER" + " )";
-    private static final String CREATE_TABLE_TEST = "CREATE TABLE " + TABLE_TESTS + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IDT + " INTEGER," + KEY_ANSWERED + " INTEGER," + KEY_DESC + " TEXT," + KEY_NAME + " TEXT" + " )";
+    private static final String CREATE_TABLE_TEST = "CREATE TABLE " + TABLE_TESTS + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IDT + " INTEGER," + KEY_ANSWERED + " INTEGER," + KEY_DESC + " TEXT,"+ KEY_INSTRUCTOR + " TEXT," + KEY_NAME + " TEXT" + " )";
     private static final String CREATE_TABLE_QUESTION = "CREATE TABLE " + TABLE_QUESTIONS + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TYPE + " INTEGER," + KEY_IDT + " INTEGER," + KEY_IDQ + " INTEGER," + KEY_RIGHT + " INTEGER," + KEY_NAME + " TEXT" + " )";
     private static final String CREATE_TABLE_OPTIONS = "CREATE TABLE " + TABLE_OPTIONS + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IDQ + " INTEGER," + KEY_IDO + " INTEGER," + KEY_TYPE + " INTEGER," + KEY_NAME + " TEXT" + " )";
     private static final String CREATE_TABLE_ANSWERS = "CREATE TABLE " + TABLE_ANSWERS + " (" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IDU + " INTEGER," + KEY_IDO + " INTEGER," + KEY_IDT + " INTEGER," + KEY_IDQ + " INTEGER," + KEY_TIMESTRAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP" + " )";
@@ -101,7 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(KEY_NAME,name);
-        db.update(TABLE_USER,cv,"1",new String[]{});
+        db.update(TABLE_USER, cv, "1", new String[]{});
     }
 
     public void storeTest(Test test) {
@@ -111,6 +112,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_IDT, test.getIdT());
         values.put(KEY_NAME, test.getName());
         values.put(KEY_ANSWERED, test.isAnswered());
+        values.put(KEY_INSTRUCTOR, test.getInstructor());
         values.put(KEY_DESC, test.getQuestions());
         db.insert(TABLE_TESTS, null, values);
 
@@ -126,6 +128,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             test.setName(c.getString(c.getColumnIndex(KEY_NAME)));
             test.setIdT(c.getInt(c.getColumnIndex(KEY_IDT)));
             test.setAnswered(c.getInt(c.getColumnIndex(KEY_ANSWERED)));
+            test.setInstructor(c.getString(c.getColumnIndex(KEY_INSTRUCTOR)));
             test.setQuestions(c.getString(c.getColumnIndex(KEY_DESC)));
             tests.add(test);
         }

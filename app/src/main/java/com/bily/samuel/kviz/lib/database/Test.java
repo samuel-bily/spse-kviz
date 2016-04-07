@@ -9,6 +9,7 @@ public class Test {
     private int idT;
     private String name;
     private String questions;
+    private String instructor;
     private int answered;
 
     public Test(){}
@@ -58,6 +59,14 @@ public class Test {
 
     public void setIdT(int idT) {
         this.idT = idT;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
     }
 
     @Override

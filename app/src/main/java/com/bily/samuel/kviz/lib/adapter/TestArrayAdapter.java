@@ -50,15 +50,16 @@ public class TestArrayAdapter extends ArrayAdapter {
         TextView name = (TextView)row.findViewById(R.id.testTextView);
         TextView id = (TextView)row.findViewById(R.id.testId);
         TextView stat = (TextView)row.findViewById(R.id.testStat);
+        TextView instructor = (TextView)row.findViewById(R.id.instructor);
         ImageView imageView = (ImageView)row.findViewById(R.id.testImage);
         RelativeLayout imageLayout = (RelativeLayout)row.findViewById(R.id.imageLayout);
 
         name.setText(test.getName());
         id.setText("" + test.getIdT());
-
         imageView.setVisibility(View.GONE);
         stat.setVisibility(View.VISIBLE);
         stat.setText(test.getQuestions());
+        instructor.setText(test.getInstructor());
 
         return row;
     }
