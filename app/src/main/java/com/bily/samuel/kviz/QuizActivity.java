@@ -106,10 +106,14 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     public boolean isDownloaded(){
-        ArrayList<Question> questions = db.getQuestions(testId);
-        Question q = questions.get(0);
-        int idq = q.getId();
-        return db.getOptions(idq).size() > 0;
+        try {
+            ArrayList<Question> questions = db.getQuestions(testId);
+            Question q = questions.get(0);
+            int idq = q.getId();
+            return db.getOptions(idq).size() > 0;
+        }catch(IndexOutOfBoundsException e){
+            return false;
+        }
     }
 
     @Override
