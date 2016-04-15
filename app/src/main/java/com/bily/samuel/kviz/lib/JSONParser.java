@@ -34,7 +34,7 @@ public class JSONParser {
         JSONObject jsonObject = null;
         StringBuilder stringBuilder = null;
         try{
-            URL url = new URL("http://spse.samuel-bily.xyz/android/index.php");
+            URL url = new URL("http://139.59.136.208/spse/android/index.php");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(6000);
             urlConnection.setConnectTimeout(7000);
