@@ -11,6 +11,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,9 +21,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bily.samuel.kviz.lib.JSONParser;
@@ -180,18 +184,66 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             getDialog().setTitle("Filter");
             final EditText editTest = (EditText)rootView.findViewById(R.id.editTestName);
             final EditText editInstructor = (EditText)rootView.findViewById(R.id.editInstructor);
-            button = (ActionProcessButton) rootView.findViewById(R.id.btnLogIn);
-            button.setMode(ActionProcessButton.Mode.ENDLESS);
-            button.setColorScheme(getResources().getColor(R.color.colorLigth), getResources().getColor(R.color.colorAccent), getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorDark));
-            button.setOnClickListener(new View.OnClickListener() {
+            final Switch filter = (Switch)rootView.findViewById(R.id.switch1);
+            filter.setChecked(true);
+            filter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View v) {
-                    button.setProgress(50);
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        editTest.setEnabled(true);
+                        editInstructor.setEnabled(true);
+                    }else{
+                        editTest.setEnabled(false);
+                        editInstructor.setEnabled(false);
+                        test = "";
+                        instructor = "";
+                        getTests = new GetTests();
+                        getTests.execute();
+                    }
+                }
+            });
+            editTest.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                     test = editTest.getText().toString();
                     instructor = editInstructor.getText().toString();
                     getTests = new GetTests();
                     getTests.execute();
-                    button.setProgress(0);
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    test = editTest.getText().toString();
+                    instructor = editInstructor.getText().toString();
+                    getTests = new GetTests();
+                    getTests.execute();
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            editInstructor.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    test = editTest.getText().toString();
+                    instructor = editInstructor.getText().toString();
+                    getTests = new GetTests();
+                    getTests.execute();
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    test = editTest.getText().toString();
+                    instructor = editInstructor.getText().toString();
+                    getTests = new GetTests();
+                    getTests.execute();
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
                 }
             });
             return rootView;
