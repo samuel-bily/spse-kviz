@@ -11,12 +11,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bily.samuel.kviz.lib.JSONParser;
 import com.bily.samuel.kviz.lib.database.DatabaseHelper;
@@ -48,6 +50,20 @@ public class ProfileActivity extends AppCompatActivity {
         textView.setText(name);
     }
 
+    public void showToast(String message){
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast,
+                (ViewGroup) findViewById(R.id.custom_toast_container));
+        TextView text = (TextView) layout.findViewById(R.id.text);
+        text.setText(message);
+        Toast toast = new Toast(getApplicationContext());
+        @SuppressWarnings("ConstantConditions") int Y = getSupportActionBar().getHeight();
+        toast.setGravity(Gravity.TOP|Gravity.FILL_HORIZONTAL,0,Y);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
+
     public void onChangeNameButtonClicked(View view){
         fm = getSupportFragmentManager();
         ChangeName changeName = new ChangeName();
@@ -63,6 +79,12 @@ public class ProfileActivity extends AppCompatActivity {
     public void onAboutButtonClicked(View view){
         Intent i = new Intent(getApplicationContext(),AboutActivity.class);
         startActivity(i);
+    }
+
+    public void onDonationButtonClicked(View view){
+        fm = getSupportFragmentManager();
+        ChangePass changePass = new ChangePass();
+        changePass.show(fm, "Donation");
     }
 
     public void onLogoutButtonClicked(View view){
@@ -128,7 +150,7 @@ public class ProfileActivity extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Snackbar.make(rootView,"Ste offline.",Snackbar.LENGTH_SHORT);
+                                            showToast("Ste offline");
                                         }
                                     });
                                 }
@@ -198,7 +220,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Snackbar.make(rootView, "Ste offline.", Snackbar.LENGTH_SHORT);
+                                                showToast("Ste offline");
                                             }
                                         });
                                     }

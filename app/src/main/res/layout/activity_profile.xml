@@ -148,6 +148,32 @@
                 android:id="@+id/textView16"
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:onClick="onDonationButtonClicked" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Donate"
+                android:id="@+id/textView19"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Pomohla ti appka? Zváž prosím drobný finančný dar"
+                android:id="@+id/textView20"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"

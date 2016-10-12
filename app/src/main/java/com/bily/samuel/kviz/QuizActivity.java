@@ -8,10 +8,15 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bily.samuel.kviz.lib.JSONParser;
 import com.bily.samuel.kviz.lib.adapter.QuestionArrayAdapter;
@@ -21,6 +26,9 @@ import com.bily.samuel.kviz.lib.database.Option;
 import com.bily.samuel.kviz.lib.database.Question;
 import com.bily.samuel.kviz.lib.database.User;
 import com.dd.processbutton.iml.ActionProcessButton;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,6 +78,12 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
             });
         }else{
             sendButton.setVisibility(View.GONE);
+            MobileAds.initialize(getApplicationContext(), "ca-app-pub-5904250473227915~5288732783");
+            AdView mAdView = (AdView) findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice("BC4B821966D64C77880972C0F5467548")
+                    .build();
+            mAdView.loadAd(adRequest);
             loadDataToListView();
         }
 
@@ -103,6 +117,20 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
                 new GetQuestions().execute();
             }
         }.execute();
+    }
+
+    public void showToast(String message){
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast,
+                (ViewGroup) findViewById(R.id.custom_toast_container));
+        TextView text = (TextView) layout.findViewById(R.id.text);
+        text.setText(message);
+        Toast toast = new Toast(getApplicationContext());
+        @SuppressWarnings("ConstantConditions") int Y = getSupportActionBar().getHeight();
+        toast.setGravity(Gravity.TOP|Gravity.FILL_HORIZONTAL,0,Y);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 
     public boolean isDownloaded(){
@@ -242,7 +270,7 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
                         @Override
                         public void run() {
                             RelativeLayout layout = (RelativeLayout) findViewById(R.id.quizLayout);
-                            Snackbar.make(layout, "Ste offline.", Snackbar.LENGTH_LONG).show();
+                            showToast("Ste offline");
                         }
                     });
                 }
@@ -293,7 +321,7 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
                             @Override
                             public void run() {
                                 RelativeLayout layout = (RelativeLayout) findViewById(R.id.quizLayout);
-                                Snackbar.make(layout, "Ste offline.", Snackbar.LENGTH_LONG).show();
+                                showToast("Ste offline");
                             }
                         });
                     }
@@ -327,8 +355,7 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                RelativeLayout layout = (RelativeLayout) findViewById(R.id.quizLayout);
-                                Snackbar.make(layout, "Úspešne odoslané!", Snackbar.LENGTH_LONG).show();
+                                showToast("Úspešne odoslané!");
                                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
                                 finish();
                                 startActivity(i);
@@ -342,8 +369,7 @@ public class QuizActivity extends AppCompatActivity implements SwipeRefreshLayou
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        RelativeLayout layout = (RelativeLayout) findViewById(R.id.quizLayout);
-                        Snackbar.make(layout, "Všetky otázky musia byť zodpovedné!", Snackbar.LENGTH_LONG).show();
+                        showToast("Všetky otázky musia byť zodpovedané!");
                     }
                 });
             }

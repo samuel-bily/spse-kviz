@@ -14,6 +14,9 @@ import com.bily.samuel.kviz.lib.JSONParser;
 import com.bily.samuel.kviz.lib.database.Answer;
 import com.bily.samuel.kviz.lib.database.DatabaseHelper;
 import com.bily.samuel.kviz.lib.database.Option;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +42,13 @@ public class QuestionAnsweredActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_answered);
+
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-5904250473227915~5288732783");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("BC4B821966D64C77880972C0F5467548")
+                .build();
+        mAdView.loadAd(adRequest);
 
         db = new DatabaseHelper(getApplicationContext());
 

@@ -106,7 +106,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void storeTest(Test test) {
-        //Log.e("STORING", test.toString());
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_IDT, test.getIdT());
@@ -115,7 +114,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_INSTRUCTOR, test.getInstructor());
         values.put(KEY_DESC, test.getQuestions());
         db.insert(TABLE_TESTS, null, values);
-
     }
 
     public ArrayList<Test> getTests() {
@@ -241,7 +239,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             answer.setIdU(user.getId_u());
             answer.setIdQ(idq);
             answer.setIdT(idt);
-            //answer.setTimestramp(c.getString(c.getColumnIndex(KEY_TIMESTRAMP)));
             c.close();
             return answer;
         }
@@ -253,8 +250,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void storeAnswer(Answer answer){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_ANSWERS + " WHERE " + KEY_IDQ + " = " + answer.getIdQ(),null);
         if(c.getCount()>0) {
             db.delete(TABLE_ANSWERS, KEY_IDQ + " = ?", new String[]{"" + answer.getIdQ()});
@@ -264,7 +259,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_IDO,answer.getIdO());
         values.put(KEY_IDQ,answer.getIdQ());
         values.put(KEY_IDT,answer.getIdT());
-        //values.put(KEY_TIMESTRAMP,dateFormat.format(date));
         db.insert(TABLE_ANSWERS, null, values);
     }
 
@@ -275,7 +269,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Answer answer = new Answer();
             answer.setIdO(c.getInt(c.getColumnIndex(KEY_IDO)));
             answer.setIdQ(c.getInt(c.getColumnIndex(KEY_IDQ)));
-            //answer.setTimestramp(c.getString(c.getColumnIndex(KEY_TIMESTRAMP)));
             answer.setIdU(c.getInt(c.getColumnIndex(KEY_IDU)));
             c.close();
             return answer;

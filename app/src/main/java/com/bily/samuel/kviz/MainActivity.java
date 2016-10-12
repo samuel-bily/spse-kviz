@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Message;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +29,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bily.samuel.kviz.lib.JSONParser;
 import com.bily.samuel.kviz.lib.adapter.TestArrayAdapter;
@@ -176,6 +179,20 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         getTests.execute();
     }
 
+    public void showToast(String message){
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast,
+                (ViewGroup) findViewById(R.id.custom_toast_container));
+        TextView text = (TextView) layout.findViewById(R.id.text);
+        text.setText(message);
+        Toast toast = new Toast(getApplicationContext());
+        @SuppressWarnings("ConstantConditions") int Y = getSupportActionBar().getHeight();
+        toast.setGravity(Gravity.TOP|Gravity.FILL_HORIZONTAL,0,Y);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+    }
+
     @SuppressLint("ValidFragment")
     public class SetFilter extends DialogFragment {
         @Override
@@ -192,6 +209,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     if(isChecked){
                         editTest.setEnabled(true);
                         editInstructor.setEnabled(true);
+                        editTest.setText(test);
+                        editInstructor.setText(instructor);
                     }else{
                         editTest.setEnabled(false);
                         editInstructor.setEnabled(false);
@@ -281,11 +300,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     }
 
                 } else {
+                    final String message = jsonObject.getString("message");
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            RelativeLayout layout = (RelativeLayout) findViewById(R.id.main_relative);
-                            Snackbar.make(layout, "Something went wrong.", Snackbar.LENGTH_LONG).show();
+                            showToast(message);
                         }
                     });
                 }

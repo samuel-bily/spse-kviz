@@ -7,10 +7,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bily.samuel.kviz.lib.JSONParser;
 import com.bily.samuel.kviz.lib.database.Answer;
@@ -30,8 +34,6 @@ public class QuestionActivity extends AppCompatActivity {
     private int questionId;
     private int optionId;
     private int testId;
-    private int right;
-    private ArrayList<HashMap<String,String>> optionsArray;
     private DatabaseHelper db;
 
     private ActionProcessButton saveButton;
@@ -73,6 +75,20 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
         setClick();
+    }
+
+    public void showToast(String message){
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast,
+                (ViewGroup) findViewById(R.id.custom_toast_container));
+        TextView text = (TextView) layout.findViewById(R.id.text);
+        text.setText(message);
+        Toast toast = new Toast(getApplicationContext());
+        @SuppressWarnings("ConstantConditions") int Y = getSupportActionBar().getHeight();
+        toast.setGravity(Gravity.TOP|Gravity.FILL_HORIZONTAL,0,Y);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 
     public void setRadioButtonText(){
@@ -149,6 +165,7 @@ public class QuestionActivity extends AppCompatActivity {
                     radioButton3.setChecked(true);
                     break;
             }
+            optionId = type;
         }catch(NullPointerException e){
             Log.e("NullPointerException", e.toString());
         }
@@ -180,8 +197,7 @@ public class QuestionActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            RelativeLayout layout = (RelativeLayout) findViewById(R.id.questionLayout);
-                            Snackbar.make(layout, "Ste offline.", Snackbar.LENGTH_LONG).show();
+                            showToast("Ste offline");
                         }
                     });
                 }

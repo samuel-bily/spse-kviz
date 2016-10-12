@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "723558541307",
+    "firebase_url": "https://scorching-heat-8464.firebaseio.com",
+    "project_id": "scorching-heat-8464",
+    "storage_bucket": "scorching-heat-8464.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723558541307:android:a0e3af69cd86398b",
+        "android_client_info": {
+          "package_name": "com.bily.samuel.kviz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723558541307-4ctvpjem47mfcnvflguf9jk00cs3o927.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK1L8Xi00HwEM6rOticdL8RJxkQ4HX5zk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
